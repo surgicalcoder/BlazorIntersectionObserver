@@ -11,7 +11,7 @@ namespace GoLive.Blazor.IntersectionObserver
 {
     public class IntersectionObserverService: IIntersectionObserverService, IAsyncDisposable
     {
-        private readonly string scriptPath = "_content/BlazorIntersectionObserver/blazor-intersection-observer.min.js";
+        private readonly string scriptPath = "_content/GoLive.Blazor.IntersectionObserver/blazor-intersection-observer.min.js";
 
         private readonly Task<IJSObjectReference> moduleTask;
 
