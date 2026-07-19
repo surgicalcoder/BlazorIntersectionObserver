@@ -52,7 +52,7 @@ namespace Ljbc1994.Blazor.IntersectionObserver.Components
             this.Observer = await this.ObserverService.Observe(elementReference.Value, this.OnIntersectUpdate, this.Options);
         }
 
-        private async void OnIntersectUpdate(IList<IntersectionObserverEntry> entries)
+        private async ValueTask OnIntersectUpdate(IList<IntersectionObserverEntry> entries)
         {
             var entry = entries?.FirstOrDefault();
 

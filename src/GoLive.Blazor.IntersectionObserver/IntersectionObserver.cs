@@ -18,7 +18,7 @@ namespace Ljbc1994.Blazor.IntersectionObserver
         /// <summary>
         /// On intersection updates, trigger the action
         /// </summary>
-        private event Action<IList<IntersectionObserverEntry>> OnIntersectUpdate;
+        private event Func<IList<IntersectionObserverEntry>, ValueTask> OnIntersectUpdate;
 
         /// <summary>
         /// On unobserving an element, trigger the action
@@ -50,7 +50,7 @@ namespace Ljbc1994.Blazor.IntersectionObserver
         /// <param name="onDisconnect">On disconnecting the observer</param>
         public IntersectionObserver(
             string id,
-            Action<IList<IntersectionObserverEntry>> onIntersectUpdate,
+            Func<IList<IntersectionObserverEntry>, ValueTask> onIntersectUpdate,
             Func<string, ElementReference, ValueTask> onObserve,
             Func<string, ElementReference, ValueTask> onUnobserve,
             Func<string, ValueTask<bool>> onDisconnect,
@@ -70,11 +70,15 @@ namespace Ljbc1994.Blazor.IntersectionObserver
         /// to the actions(s).
         /// </summary>
         /// <param name="entries"></param>
-        public void OnIntersect(IList<IntersectionObserverEntry> entries)
+        public async ValueTask OnIntersect(IList<IntersectionObserverEntry> entries)
         {
             if (entries != null && entries.Any())
             {
-                OnIntersectUpdate?.Invoke(entries);
+                var handler = OnIntersectUpdate;
+                if (handler != null)
+                {
+                    await handler.Invoke(entries);
+                }
             }
         }
 

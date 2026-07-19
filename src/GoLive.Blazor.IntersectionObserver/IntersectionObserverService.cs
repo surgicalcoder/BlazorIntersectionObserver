@@ -37,7 +37,7 @@ namespace Ljbc1994.Blazor.IntersectionObserver
         /// <param name="options">The intersection observer options</param>
         /// <returns>The observer instance</returns>
         public async Task<IntersectionObserver> Create(
-            Action<IList<IntersectionObserverEntry>> onIntersectUpdate,
+            Func<IList<IntersectionObserverEntry>, ValueTask> onIntersectUpdate,
             IntersectionObserverOptions options = null
         )
         {
@@ -51,7 +51,7 @@ namespace Ljbc1994.Blazor.IntersectionObserver
         }
 
         /// <summary>
-        /// Create an observer instance and immediately observe 
+        /// Create an observer instance and immediately observe
         /// the element.
         /// </summary>
         /// <param name="element">The element</param>
@@ -60,7 +60,7 @@ namespace Ljbc1994.Blazor.IntersectionObserver
         /// <returns></returns>
         public async Task<IntersectionObserver> Observe(
             ElementReference element,
-            Action<IList<IntersectionObserverEntry>> onIntersectUpdate,
+            Func<IList<IntersectionObserverEntry>, ValueTask> onIntersectUpdate,
             IntersectionObserverOptions options = null
         )
         {
@@ -80,13 +80,13 @@ namespace Ljbc1994.Blazor.IntersectionObserver
         /// <param name="id">The observer id</param>
         /// <param name="entries">The intersection observer entries</param>
         [JSInvokable(nameof(OnCallback))]
-        public void OnCallback(string id, IList<IntersectionObserverEntry> entries)
+        public async Task OnCallback(string id, IList<IntersectionObserverEntry> entries)
         {
             this.EnsureObserverExists(id);
 
             if (this.observers.TryGetValue(id, out var observer))
             {
-                observer.OnIntersect(entries);
+                await observer.OnIntersect(entries);
             }
         }
 
@@ -96,7 +96,7 @@ namespace Ljbc1994.Blazor.IntersectionObserver
         /// <param name="observerId">The observer instance id</param>
         /// <param name="onIntersectUpdate">On intersection update, pass the entries</param>
         /// <returns>The observer instance</returns>
-        private IntersectionObserver CreateObserver(string observerId, Action<IList<IntersectionObserverEntry>> onIntersectUpdate)
+        private IntersectionObserver CreateObserver(string observerId, Func<IList<IntersectionObserverEntry>, ValueTask> onIntersectUpdate)
         {
             var observer = new IntersectionObserver(
                 observerId,
