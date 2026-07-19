@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Ljbc1994.Blazor.IntersectionObserver
+namespace GoLive.Blazor.IntersectionObserver
 {
     public static class IntersectionObserverExtensions
     {

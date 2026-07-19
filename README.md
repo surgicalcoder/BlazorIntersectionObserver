@@ -1,21 +1,25 @@
 # BlazorIntersectionObserver
 
-[![Package Version](https://img.shields.io/nuget/v/BlazorIntersectionObserver.svg)](https://www.nuget.org/packages/BlazorIntersectionObserver)
-[![NuGet Downloads](https://img.shields.io/nuget/dt/BlazorIntersectionObserver.svg)](https://www.nuget.org/packages/BlazorIntersectionObserver)
-[![License](https://img.shields.io/github/license/ljbc1994/BlazorIntersectionObserver.svg)](https://github.com/ljbc1994/BlazorIntersectionObserver/blob/master/LICENCE)
+[![Package Version](https://img.shields.io/nuget/v/GoLive.Blazor.IntersectionObserver.svg)](https://www.nuget.org/packages/GoLive.Blazor.IntersectionObserver)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/GoLive.Blazor.IntersectionObserver.svg)](https://www.nuget.org/packages/GoLive.Blazor.IntersectionObserver)
+[![License](https://img.shields.io/github/license/GoLive/BlazorIntersectionObserver.svg)](https://github.com/GoLive/BlazorIntersectionObserver/blob/master/LICENCE)
 
-> A comprehensive wrapper around the Intersection Observer API, giving you all the goodness of observing intersections in a performant way.
+> A comprehensive wrapper around the Intersection Observer API, giving you all the goodness of observing intersections
+> in a performant way.
 
-This is a wrapper around the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) so that you can use it in `Blazor` for .NET 5. It has the same API structure with convenience methods and components for a better dev experience. It works with both Blazor WebAssembly and Blazor Server. 
+This is a wrapper around
+the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) so that you
+can use it in `Blazor` for .NET 5. It has the same API structure with convenience methods and components for a better
+dev experience. It works with both Blazor WebAssembly and Blazor Server.
 
 ## Get Started
 
 ### 1. Installation
 
-Install `BlazorIntersectionObserver` through NuGet.
+Install `GoLive.Blazor.IntersectionObserver` through NuGet.
 
 ```bash
-> dotnet add package BlazorIntersectionObserver
+> dotnet add package GoLive.Blazor.IntersectionObserver
 ```
 
 ### 2. Register the service
@@ -25,7 +29,7 @@ Now you'll need to add the service to the service configuration.
 #### WebAssembly (Program.cs)
 
 ```cs
-using Ljbc1994.Blazor.IntersectionObserver;
+using GoLive.Blazor.IntersectionObserver;
 
 public class Program
 {
@@ -42,7 +46,7 @@ public class Program
 #### Server (Startup.cs)
 
 ```cs
-using Ljbc1994.Blazor.IntersectionObserver;
+using GoLive.Blazor.IntersectionObserver;
 
 public class Startup {
     public void ConfigureServices(IServiceCollection services)
@@ -60,7 +64,7 @@ object which contains the observer entry! Easy!
 #### Component setup
 
 ```razor
-@using Ljbc1994.Blazor.IntersectionObserver.Components
+@using GoLive.Blazor.IntersectionObserver.Components
 
 <IntersectionObserve>
     <div @ref="context.Ref.Current">
@@ -76,7 +80,7 @@ object which contains the observer entry! Easy!
 To directly use the service, you just need to inject it and observe the element(s).
 
 ```razor
-@using Ljbc1994.Blazor.IntersectionObserver
+@using GoLive.Blazor.IntersectionObserver
 @inject IIntersectionObserverService ObserverService
 
 <img @ref="ImageElement" src="@(IsIntersecting ? "https://www.placecage.com/g/500/500" : "")"/>
@@ -93,9 +97,9 @@ To directly use the service, you just need to inject it and observe the element(
         }
     }
 
-    public async void SetupObserver()
+    public async Task SetupObserver()
     {
-        await ObserverService.Observe(ImageElement, (entries) =>
+        await ObserverService.Observe(ImageElement, async (entries) =>
         {
             var entry = entries.FirstOrDefault();
             IsIntersecting = entry.IsIntersecting;
@@ -109,7 +113,8 @@ To directly use the service, you just need to inject it and observe the element(
 
 ### Options
 
-You can pass through `options` to the `ObserverService` methods, these are the same as the Intersection Observer API options.
+You can pass through `options` to the `ObserverService` methods, these are the same as the Intersection Observer API
+options.
 
 #### Example
 
@@ -126,14 +131,16 @@ var options = new IntersectionObserverOptions {
 #### `Observe`
 
 This a shorthand way of observing an element by providing:
+
 - The element you want to observe.
 - The callback to trigger on an intersection update.
 - The intersection observer options.
 
-This returns an `IntersectionObserver` instance, allowing you to `disconnect` the observer or `unobserve` an element. Or if you wish, observe additional elements.
+This returns an `IntersectionObserver` instance, allowing you to `disconnect` the observer or `unobserve` an element. Or
+if you wish, observe additional elements.
 
 ```cs
-var observer = await ObserverService.Observe(ElementRef, (entries) => {
+var observer = await ObserverService.Observe(ElementRef, async (entries) => {
     IsIntersecting = entries.FirstOrDefault().IsIntersecting;
     StateHasChanged();
 }, options);
@@ -141,15 +148,18 @@ var observer = await ObserverService.Observe(ElementRef, (entries) => {
 
 #### `Create`
 
-The `Create` method follows the same approach as the Intersection Observer API, you create the observer and then pass elements you wish to observe by calling the `Observe` method on the observer instance. To create the observer, provide the following:
+The `Create` method follows the same approach as the Intersection Observer API, you create the observer and then pass
+elements you wish to observe by calling the `Observe` method on the observer instance. To create the observer, provide
+the following:
 
 - The callback to trigger on an intersection update.
 - The intersection observer options.
 
-This returns an `IntersectionObserver` instance, allowing you to `Observe` elements. This also provides the ability to `disconnect` or `unobserve` the element.
+This returns an `IntersectionObserver` instance, allowing you to `Observe` elements. This also provides the ability to
+`disconnect` or `unobserve` the element.
 
 ```cs
-var observer = await ObserverService.Create((entries) => {
+var observer = await ObserverService.Create(async (entries) => {
     IsIntersecting = entries.FirstOrDefault().IsIntersecting;
     StateHasChanged();
 }, options);
@@ -160,7 +170,7 @@ await observer.Unobserve(FirstImage);
 
 ### `IntersectionObserver` Methods
 
-#### `Observe` 
+#### `Observe`
 
 To observe an element, provide the element reference to the `IntersectionObserver` instance by calling `Observe`.
 
@@ -169,6 +179,7 @@ observer.Observe(ElementReference);
 ```
 
 #### `Unobserve`
+
 To unobserve an element, provide the element reference to the `IntersectionObserver` instance by calling `Unobserve`.
 
 ```cs
@@ -176,6 +187,7 @@ observer.Unobserve(ElementReference);
 ```
 
 #### `Disconnect`
+
 To disconnect the observer, call `Disconnect` on the `IntersectionObserver` instance.
 
 ```cs
@@ -185,7 +197,7 @@ observer.Disconnect();
 This will remove all the observed elements from the observer, i.e.
 
 ```razor
-@using Ljbc1994.Blazor.IntersectionObserver
+@using GoLive.Blazor.IntersectionObserver
 @implements IAsyncDisposable
 @inject IIntersectionObserverService ObserverService
 
@@ -207,6 +219,7 @@ This will remove all the observed elements from the observer, i.e.
 ```
 
 #### `Dispose`
+
 To remove the observer, call `Dispose` on the `IntersectionObserver` instance.
 
 ```cs
@@ -216,7 +229,7 @@ observer.Dispose();
 This is a useful method to clean up observers when components are disposed of, i.e.
 
 ```razor
-@using Ljbc1994.Blazor.IntersectionObserver
+@using GoLive.Blazor.IntersectionObserver
 @implements IAsyncDisposable
 @inject IIntersectionObserverService ObserverService
 
@@ -241,9 +254,11 @@ This is a useful method to clean up observers when components are disposed of, i
 
 #### `<IntersectionObserve>`
 
-Rather than directly interfacing with the service, you can use this convenience component for quick and easy observing. You can access the observer entry through the implicit `@context`!
+Rather than directly interfacing with the service, you can use this convenience component for quick and easy observing.
+You can access the observer entry through the implicit `@context`!
 
-You need to make sure to provide the reference of the element you want to observe, this is done by passing the element reference to the context reference.
+You need to make sure to provide the reference of the element you want to observe, this is done by passing the element
+reference to the context reference.
 
 ```razor
 @* Injecting service... *@
@@ -259,12 +274,13 @@ You need to make sure to provide the reference of the element you want to observ
 
 ##### Props
 
-- `OnChange` (`EventCallback<IntersectionObserverEntry>`) - When the intersection observer has a entry update.  
+- `OnChange` (`EventCallback<IntersectionObserverEntry>`) - When the intersection observer has a entry update.
 - `IsIntersecting` (`bool`) - Whether the element is intersecting - used for two-way binding.
 - `Options` (`IntersectionObserverOptions`) - The options for the observer.
 - `Once` (`bool`) - Only observe once for an intersection, then the instance disposes of itself.
 
-#### Context 
+#### Context
+
 The context is the `IntersectionObserverContext` object, with the following signature:
 
 ```cs
@@ -291,16 +307,41 @@ public class IntersectionObserverEntry
 }
 ```
 
+## Upgrading to `3.1.1`
+
+In `3.1.1` the intersection callback changed from `Action<IList<IntersectionObserverEntry>>` to the asynchronous
+`Func<IList<IntersectionObserverEntry>, ValueTask>`. This means your callbacks can now `await` asynchronous work (e.g.
+`EventCallback.InvokeAsync`, HTTP calls) directly. The callback is awaited by the observer on each intersection update,
+so update your lambdas to use `async` and `await`:
+
+```cs
+await ObserverService.Observe(element, async (entries) =>
+{
+    var entry = entries.FirstOrDefault();
+    await SomeAsyncWork(entry);
+    StateHasChanged();
+});
+```
+
+The package id was also renamed to `GoLive.Blazor.IntersectionObserver`.
+
 ## Additional Information
 
 ### Upgrading to `2.0.1`+
 
-In versions prior to `2.0.1`, the `IntersectionObserve` component didn't require a reference to the node as it was wrapped in an element that was automatically observed. This was changed to ensure the consumer provides the reference to prevent any potential layout issues and make it explicit what element should be observed.
+In versions prior to `2.0.1`, the `IntersectionObserve` component didn't require a reference to the node as it was
+wrapped in an element that was automatically observed. This was changed to ensure the consumer provides the reference to
+prevent any potential layout issues and make it explicit what element should be observed.
 
-Therefore, before `2.0.1`, if the consumer had an element with `display: none;` within the `IntersectionObserve` component, this would have worked. However, as we're now observing the element provided as opposed to a wrapped element, this will no longer work. To resolve this, you can wrap the observed element in a div and observe the container div instead of the observed element.
+Therefore, before `2.0.1`, if the consumer had an element with `display: none;` within the `IntersectionObserve`
+component, this would have worked. However, as we're now observing the element provided as opposed to a wrapped element,
+this will no longer work. To resolve this, you can wrap the observed element in a div and observe the container div
+instead of the observed element.
 
 ## Feature Requests
-There's so much that `IntersectionObserver` can do, so if you have any requests or you want better documentation and examples, feel free to make a pull request or create an issue!
+
+There's so much that `IntersectionObserver` can do, so if you have any requests or you want better documentation and
+examples, feel free to make a pull request or create an issue!
 
 
 

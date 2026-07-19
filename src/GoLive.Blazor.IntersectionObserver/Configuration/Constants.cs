@@ -1,4 +1,4 @@
-namespace Ljbc1994.Blazor.IntersectionObserver.Configuration
+namespace GoLive.Blazor.IntersectionObserver.Configuration
 {
     internal static class Constants
     {

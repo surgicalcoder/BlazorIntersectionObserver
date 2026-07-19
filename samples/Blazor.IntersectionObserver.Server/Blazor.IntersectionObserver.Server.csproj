@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <PackageId>BlazorIntersectionObserverServer</PackageId>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Ljbc1994.Blazor.IntersectionObserver\Ljbc1994.Blazor.IntersectionObserver.csproj">
+    <ProjectReference Include="..\..\src\GoLive.Blazor.IntersectionObserver\GoLive.Blazor.IntersectionObserver.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>

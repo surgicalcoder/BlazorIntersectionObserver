@@ -1,12 +1,12 @@
-using Ljbc1994.Blazor.IntersectionObserver.API;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GoLive.Blazor.IntersectionObserver.API;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 
-namespace Ljbc1994.Blazor.IntersectionObserver.Components
+namespace GoLive.Blazor.IntersectionObserver
 {
     public class IntersectionObserve : ComponentBase, IAsyncDisposable
     {

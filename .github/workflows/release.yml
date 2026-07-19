@@ -1,10 +1,7 @@
 name: release
 
 on:
-    push:
-        branches: [master]
-        paths-ignore:
-            - '**.md'
+    workflow_dispatch:
 
 jobs:
   build:
@@ -20,27 +17,27 @@ jobs:
       - name: Install npm dependencies
         run: |
             npm ci
-        working-directory: src/Ljbc1994.Blazor.IntersectionObserver
+        working-directory: src/GoLive.Blazor.IntersectionObserver
 
       - name: Run tests
         run: |
             npm run test
-        working-directory: src/Ljbc1994.Blazor.IntersectionObserver
+        working-directory: src/GoLive.Blazor.IntersectionObserver
 
       - name: Setup Dotnet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '5.0.x'
-          include-prerelease: true
+          dotnet-version: '10.x'
+          include-prerelease: false
       
       - name: Dotnet build
         run: dotnet build --configuration Release
 
       - name: Dotnet pack
-        run: dotnet pack src/Ljbc1994.Blazor.IntersectionObserver/*.csproj --configuration Release --verbosity Detailed
+        run: dotnet pack src/GoLive.Blazor.IntersectionObserver/*.csproj --configuration Release --verbosity Detailed
       
       - name: Dotnet publish to nuget
-        run: dotnet nuget push src/Ljbc1994.Blazor.IntersectionObserver/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
+        run: dotnet nuget push src/GoLive.Blazor.IntersectionObserver/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
       

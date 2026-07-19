@@ -1,15 +1,15 @@
 <Project>
   <!-- Set common properties regarding assembly information and nuget packages -->
   <PropertyGroup>
-    <Authors>Louie Colgan</Authors>
-    <Product>Ljbc1994.Blazor.IntersectionObserver</Product>
-    <PackageId>BlazorIntersectionObserver</PackageId>
-    <Copyright>Copyright © 2021 - Louie Colgan</Copyright>
+    <Authors>Louie Colgan, SurgicalCoder</Authors>
+    <Product>GoLive.Blazor.IntersectionObserver</Product>
+    <PackageId>GoLive.Blazor.IntersectionObserver</PackageId>
+    <Copyright>Copyright © 2026 - SurgicalCoder, Louie Colgan</Copyright>
     <Summary>Intersection Observer API wrapper for Blazor</Summary>
-    <PackageProjectUrl>https://github.com/ljbc1994/BlazorIntersectionObserver</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/GoLive/BlazorIntersectionObserver</PackageProjectUrl>
     <PackageTags>Microsoft ASP.NET Core Blazor Intersection Observer</PackageTags>
-    <RepositoryUrl>https://github.com/ljbc1994/BlazorIntersectionObserver</RepositoryUrl>
-    <LicenseUrl>https://github.com/ljbc1994/BlazorIntersectionObserver/blob/master/LICENCE</LicenseUrl>
+    <RepositoryUrl>https://github.com/GoLive/BlazorIntersectionObserver</RepositoryUrl>
+    <LicenseUrl>https://github.com/GoLive/BlazorIntersectionObserver/blob/master/LICENCE</LicenseUrl>
     <RepositoryType>git</RepositoryType>
     <IncludeSymbols>true</IncludeSymbols>
     <PackageReleaseNotes></PackageReleaseNotes>
@@ -33,7 +33,7 @@
 
   <!-- Versioning properties -->
   <PropertyGroup>
-    <VersionPrefix Condition=" '$(VersionPrefix)'=='' ">3.1.0</VersionPrefix>
+    <VersionPrefix Condition=" '$(VersionPrefix)'=='' ">3.1.1</VersionPrefix>
     <VersionSuffix Condition=" '$(VersionSuffix)'=='' ">dev</VersionSuffix>
   </PropertyGroup>
 

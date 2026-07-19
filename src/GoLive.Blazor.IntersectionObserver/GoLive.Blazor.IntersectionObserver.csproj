@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <PackageId>GoLive.Blazor.IntersectionObserver</PackageId>
-    <TargetFramework>net5.0</TargetFramework>
-    <LangVersion>8.0</LangVersion>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>default</LangVersion>
     <RazorLangVersion>3.0</RazorLangVersion>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <IsPackable>true</IsPackable>
@@ -36,7 +36,7 @@
       - Updated project to use dotnet 5
     </PackageReleaseNotes>
     <PackageLicenseFile>LICENCE.txt</PackageLicenseFile>
-    <Copyright>Copyright © 2021 - Louie Colgan, SurgicalCoder</Copyright>
+    <Copyright>Copyright © 2026 - SurgicalCoder, Louie Colgan</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

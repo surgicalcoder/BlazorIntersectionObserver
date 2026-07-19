@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.IntersectionObserver
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.IntersectionObserver.Server", "samples\Blazor.IntersectionObserver.Server\Blazor.IntersectionObserver.Server.csproj", "{8F503EA1-622E-48C0-8BA4-51AE7D413697}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ljbc1994.Blazor.IntersectionObserver", "src\Ljbc1994.Blazor.IntersectionObserver\Ljbc1994.Blazor.IntersectionObserver.csproj", "{5EAE5F4C-24EF-45A4-B4BE-D5C24D5772ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoLive.Blazor.IntersectionObserver", "src\GoLive.Blazor.IntersectionObserver\GoLive.Blazor.IntersectionObserver.csproj", "{5EAE5F4C-24EF-45A4-B4BE-D5C24D5772ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +41,6 @@ Global
 		{5EAE5F4C-24EF-45A4-B4BE-D5C24D5772ED} = {06DF5E56-1E2C-4435-854E-0155228D42E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2A1E800E-0698-42F3-8B5D-2788225893E5} 
+		SolutionGuid = {2A1E800E-0698-42F3-8B5D-2788225893E5}
 	EndGlobalSection
 EndGlobal

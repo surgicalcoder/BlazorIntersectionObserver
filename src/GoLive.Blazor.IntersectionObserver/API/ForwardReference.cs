@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace Ljbc1994.Blazor.IntersectionObserver.API
+namespace GoLive.Blazor.IntersectionObserver.API
 {
     public class ForwardReference
     {
